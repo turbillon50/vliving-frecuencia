@@ -1,0 +1,170 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frecuencia · V&LIVING — ¿En qué parte de la onda está el mercado?</title>
+<meta name="description" content="El medidor de picos y valles del mercado inmobiliario. Fase actual del ciclo, frecuencias medidas y ventana de entrada. Por V&LIVING.">
+<link rel="icon" href="/assets/vliving-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,600;1,600&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--papel:#FFFFFF;--grafito:#1D1D21;--cromo:#73737B;--suave:#54545C;--linea:rgba(29,29,33,.08);--nar:#F85702;--narh:#DE4600;--narv:#FF7A33;--dato:#333FA8}
+*{box-sizing:border-box;margin:0}
+body{background:var(--papel);color:var(--grafito);font-family:'Inter',sans-serif}
+.cor{font-family:'Cormorant',serif}.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+.in{animation:in .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+header{background:radial-gradient(900px 520px at 80% 6%,rgba(255,255,255,.30),transparent 55%),linear-gradient(160deg,#FF6316 0%,var(--nar) 55%,#E24500 100%);color:#fff;position:relative;overflow:hidden}
+.onda-deco{position:absolute;right:-30px;top:20px;width:420px;opacity:.25;pointer-events:none}
+.hero{padding:44px 0 50px;position:relative}
+.eyebrow{font-size:11px;letter-spacing:.26em;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.eyebrow img{width:34px;height:34px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+h1{font-size:54px;font-weight:600;line-height:1.04;max-width:660px}
+h1 em{color:#FFE7D6}
+.sub{margin-top:16px;font-size:16px;line-height:1.65;color:rgba(255,255,255,.94);max-width:580px}
+.faseHoy{display:inline-flex;align-items:center;gap:12px;margin-top:26px;background:#fff;color:var(--grafito);border-radius:999px;padding:12px 22px 12px 14px;box-shadow:0 18px 50px rgba(130,35,0,.35)}
+.faseHoy .dot{width:12px;height:12px;border-radius:99px;background:var(--nar);animation:late 1.6s ease-in-out infinite}
+@keyframes late{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+.faseHoy b{font-size:17px;font-weight:800}
+.faseHoy span{font-size:11px;color:var(--cromo);font-family:'JetBrains Mono',monospace}
+section{padding:40px 0 6px}
+h2.cor{font-size:30px;font-weight:600}
+.secSub{margin-top:6px;font-size:14px;color:var(--suave);max-width:560px;line-height:1.55}
+.card{background:#fff;border:1px solid var(--linea);border-radius:24px;box-shadow:0 12px 34px rgba(248,87,2,.07),0 2px 10px rgba(29,29,33,.04)}
+.grafica{margin-top:20px;padding:22px 18px 14px;overflow:hidden}
+.grafica svg{width:100%;height:auto;display:block}
+.leyenda{display:flex;gap:16px;flex-wrap:wrap;padding:10px 8px 6px;font-size:10.5px;color:var(--cromo);font-family:'JetBrains Mono',monospace}
+.leyenda i{font-style:normal;display:flex;align-items:center;gap:6px}
+.leyenda .l1{width:18px;height:3px;border-radius:2px;background:var(--nar)}
+.leyenda .l2{width:18px;height:3px;border-radius:2px;background:var(--dato);opacity:.6}
+.leyenda .l3{width:18px;height:10px;border-radius:3px;background:rgba(248,87,2,.13)}
+.fases{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.faseChip{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:9px 16px;font-size:11px;letter-spacing:.12em;cursor:pointer;font-family:'JetBrains Mono',monospace;color:var(--suave);transition:all .18s}
+.faseChip:hover{transform:translateY(-1px)}
+.faseChip.on{background:linear-gradient(135deg,#FF6316,var(--narh));color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(248,87,2,.3)}
+.defFase{margin-top:14px;padding:18px 20px;background:#FFF3EC;border:1px solid rgba(248,87,2,.15);border-radius:20px;font-size:14.5px;line-height:1.65;color:var(--suave)}
+.defFase b{color:var(--grafito)}
+.medidores{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:20px}
+.med{padding:20px 22px;transition:transform .2s,box-shadow .2s}
+.med:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(248,87,2,.13)}
+.med .v{font-size:44px;font-weight:800;color:var(--dato);line-height:1}
+.med .v small{font-size:16px;font-weight:600;color:var(--cromo)}
+.med .t{margin-top:8px;font-size:10.5px;letter-spacing:.16em;color:var(--nar);font-family:'JetBrains Mono',monospace}
+.med p{margin-top:8px;font-size:12.5px;line-height:1.5;color:var(--suave)}
+.entrada{margin-top:20px;padding:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.ent .k{font-size:10px;letter-spacing:.2em;color:var(--cromo);font-family:'JetBrains Mono',monospace}
+.ent .n{font-size:52px;font-weight:800;line-height:1;margin-top:8px}
+.ent p{margin-top:8px;font-size:12.5px;color:var(--suave);line-height:1.5}
+.ent.pico .n{color:var(--cromo)}
+.ent.hoy .n{color:var(--nar)}
+.ent.fut .n{color:var(--dato)}
+.cierre{margin-top:16px;font-size:14.5px;line-height:1.65;color:var(--suave);border-left:3px solid var(--nar);padding-left:14px;max-width:600px}
+.cierre b{color:var(--grafito)}
+.suite{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.suite a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:#fff;border:1px solid var(--linea);border-radius:999px;padding:11px 18px;font-size:13px;font-weight:600;color:var(--grafito);box-shadow:0 8px 22px rgba(248,87,2,.07);transition:all .18s}
+.suite a:hover{transform:translateY(-2px);border-color:rgba(248,87,2,.4)}
+.suite a b{color:var(--nar)}
+footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;margin-top:64px;font-size:11px;color:var(--cromo);font-family:'JetBrains Mono',monospace;line-height:1.8}
+.fuente{max-width:640px;margin:22px auto 0;font-size:11.5px;color:var(--cromo);line-height:1.6;text-align:left;padding:0 22px}
+@media(max-width:640px){h1{font-size:38px}.ent .n{font-size:40px}}
+@media(prefers-reduced-motion:reduce){.in,.faseHoy .dot{animation:none}}
+</style></head><body>
+<header>
+<svg class="onda-deco" viewBox="0 0 420 160"><path d="M0 120 C50 120 60 30 110 30 S170 130 220 130 S280 20 330 20 S390 110 420 110" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+<div class="wrap hero">
+<div class="in mono eyebrow"><img src="/assets/vliving-logo.png" alt="V&LIVING">V&amp;LIVING · FRECUENCIA</div>
+<h1 class="in cor">¿En qué parte de la <em>onda</em> está el mercado?</h1>
+<p class="in sub">Los mercados no suben en línea recta: laten. Frecuencia mide ese latido — picos, valles y cuánto dura cada fase — para decirte una sola cosa: si es momento de entrar o de esperar.</p>
+<div class="in faseHoy" id="faseHoy"><span class="dot"></span><div><b id="fhFase">—</b><br><span id="fhMeta">cargando…</span></div></div>
+</div>
+</header>
+
+<section class="wrap">
+<h2 class="cor in">La onda completa</h2>
+<p class="secSub in">Veinte años medidos de <span id="plaza">—</span>, con la proyección y su banda de escenarios. La franja marca la próxima ventana de entrada.</p>
+<div class="card grafica in"><svg id="curva" viewBox="0 0 820 340" role="img" aria-label="Curva del ciclo"></svg>
+<div class="leyenda"><i><span class="l1"></span>historia medida</i><i><span class="l2"></span>proyección base</i><i><span class="l3"></span>ventana de entrada</i></div></div>
+<div class="fases" id="fases"></div>
+<div class="defFase in" id="defFase">Toca una fase para leer qué significa y cómo se invierte en ella.</div>
+</section>
+
+<section class="wrap">
+<h2 class="cor in">El medidor de frecuencia</h2>
+<p class="secSub in">Los lapsos que el mercado ha repetido. No son promesa: son ritmo medido.</p>
+<div class="medidores" id="medidores"></div>
+</section>
+
+<section class="wrap">
+<h2 class="cor in">La misma unidad, tres momentos</h2>
+<div class="card entrada in" id="entrada"></div>
+<p class="cierre in"><b>Misma unidad, mismo edificio, misma renta.</b> Lo único que cambia es el momento de entrada — y eso es exactamente lo que esta onda te dice.</p>
+</section>
+
+<section class="wrap">
+<h2 class="cor in">La suite trabaja junta</h2>
+<div class="suite in">
+<a href="https://pulso-neutro.vercel.app"><b>Pulso</b> qué dicen las redes</a>
+<a href="https://pulso-neutro.vercel.app/teorias"><b>Teorías</b> hipótesis medidas</a>
+<a href="https://vliving.site/evalua-tu-propiedad"><b>V-Index</b> evalúa tu propiedad</a>
+</div>
+<p class="fuente" id="fuente" style="padding:0;margin-top:22px"></p>
+</section>
+
+<footer>V&amp;LIVING · FRECUENCIA · CORTE <span id="corte">—</span><br>Primero entiende el ciclo. Después invierte.<br><span style="opacity:.7">API abierta del ciclo: /api/ciclo</span></footer>
+<script>
+const $=id=>document.getElementById(id);
+async function main(){
+  const C=await (await fetch("/api/ciclo")).json();
+  $("plaza").textContent=C.plaza; $("corte").textContent=C.corte; $("fuente").textContent="FUENTE · "+C.fuentes;
+  const meses=Math.round((2026.58-C.hoy.inicioFase)*12);
+  $("fhFase").textContent="Hoy: "+C.hoy.fase;
+  $("fhMeta").textContent=C.plaza.toUpperCase()+" · MES "+meses+" DE LA FASE · CONFIANZA "+Math.round(C.hoy.confianza*100)+"%";
+  // ── curva ──
+  const W=820,H=340,L=44,R=16,T=26,B=44;
+  const ts=[...C.serie.map(p=>p.t),...C.proyeccion.map(p=>p.t)];
+  const t0=2004.5,t1=2030, v0=15,v1=110;
+  const X=t=>L+(t-t0)/(t1-t0)*(W-L-R), Y=v=>H-B-(v-v0)/(v1-v0)*(H-T-B);
+  let s="";
+  // franja ventana
+  s+=`<rect x="${X(C.proximaVentana.ini)}" y="${T}" width="${X(C.proximaVentana.fin)-X(C.proximaVentana.ini)}" height="${H-T-B}" fill="rgba(248,87,2,.10)" rx="8"/>`;
+  s+=`<text x="${(X(C.proximaVentana.ini)+X(C.proximaVentana.fin))/2}" y="${T+16}" text-anchor="middle" font-size="10" fill="#DE4600" font-family="JetBrains Mono" letter-spacing="2">VENTANA ${C.proximaVentana.ini}–${C.proximaVentana.fin}</text>`;
+  // ejes
+  for(const y of [25,50,75,100]) s+=`<line x1="${L}" y1="${Y(y)}" x2="${W-R}" y2="${Y(y)}" stroke="rgba(29,29,33,.07)"/><text x="${L-8}" y="${Y(y)+3}" text-anchor="end" font-size="10" fill="#A5A5AD" font-family="JetBrains Mono">${y}</text>`;
+  for(const t of [2008,2012,2016,2020,2024,2028]) s+=`<text x="${X(t)}" y="${H-B+20}" text-anchor="middle" font-size="10" fill="#A5A5AD" font-family="JetBrains Mono">${t}</text>`;
+  // área + línea historia
+  const pts=C.serie.map(p=>`${X(p.t)},${Y(p.v)}`).join(" ");
+  s+=`<polygon points="${X(C.serie[0].t)},${Y(v0)} ${pts} ${X(C.serie.at(-1).t)},${Y(v0)}" fill="rgba(248,87,2,.09)"/>`;
+  s+=`<polyline points="${pts}" fill="none" stroke="#F85702" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  // banda proyección
+  const bs=C.proyeccion.map(p=>`${X(p.t)},${Y(p.alto)}`).join(" ")+" "+[...C.proyeccion].reverse().map(p=>`${X(p.t)},${Y(p.bajo)}`).join(" ");
+  s+=`<polygon points="${bs}" fill="rgba(51,63,168,.10)"/>`;
+  s+=`<polyline points="${C.proyeccion.map(p=>`${X(p.t)},${Y(p.base)}`).join(" ")}" fill="none" stroke="#333FA8" stroke-width="3" stroke-dasharray="7 6" opacity=".65" stroke-linecap="round"/>`;
+  // hitos
+  for(const h of C.hitos){
+    const aqui=h.n.includes("aquí");
+    s+=`<circle cx="${X(h.t)}" cy="${Y(h.v)}" r="${aqui?8:5.5}" fill="${aqui?"#F85702":"#fff"}" stroke="#F85702" stroke-width="3">${aqui?'<animate attributeName="r" values="7;10;7" dur="1.8s" repeatCount="indefinite"/>':''}</circle>`;
+    s+=`<text x="${X(h.t)}" y="${Y(h.v)-16}" text-anchor="middle" font-size="11" font-weight="700" fill="#1D1D21" font-family="Inter">${h.n}</text>`;
+  }
+  $("curva").innerHTML=s;
+  // ── fases ──
+  const orden=["EXPANSIÓN","PICO","CORRECCIÓN","AJUSTE","RECUPERACIÓN"];
+  $("fases").innerHTML=orden.map(f=>`<button class="faseChip${f===C.hoy.fase?" on":""}" data-f="${f}">${f===C.hoy.fase?"● ":""}${f}</button>`).join("");
+  const pinta=f=>{ $("defFase").innerHTML="<b>"+f+(f===C.hoy.fase?" · HOY":"")+"</b> — "+C.definiciones[f];
+    document.querySelectorAll(".faseChip").forEach(b=>b.classList.toggle("on",b.dataset.f===f)); };
+  document.querySelectorAll(".faseChip").forEach(b=>b.onclick=()=>pinta(b.dataset.f));
+  pinta(C.hoy.fase);
+  // ── medidores ──
+  $("medidores").innerHTML=[
+    {v:C.lapsos.picoAPico,u:"años",t:"PICO A PICO",p:"Lo que tarda el mercado local en volver a hacer máximo."},
+    {v:C.lapsos.valle.join("–"),u:"años",t:"DURACIÓN DEL VALLE",p:"Lo que suele durar el fondo antes de que arranque la recuperación."},
+    {v:C.lapsos.picoRegionalAPico,u:"años",t:"CICLO REGIONAL",p:"La onda larga de la Riviera Maya, de pico regional a pico regional."},
+    {v:meses,u:"meses",t:"EN LA FASE ACTUAL",p:"Tiempo transcurrido dentro del "+C.hoy.fase.toLowerCase()+" en curso."}
+  ].map(m=>`<div class="card med in"><div class="v">${m.v}<small> ${m.u}</small></div><div class="t">${m.t}</div><p>${m.p}</p></div>`).join("");
+  // ── entrada ──
+  const fut=C.proyeccion.at(-1);
+  $("entrada").innerHTML=`
+    <div class="ent pico"><div class="k">COMPRADA EN EL PICO 2023</div><div class="n">100</div><p>Entraste en la euforia. La corrección se comió tu margen y hoy vas abajo.</p></div>
+    <div class="ent hoy"><div class="k">COMPRADA HOY · ${C.hoy.fase}</div><div class="n">${C.hoy.indice}</div><p>Entras con el fondo en formación, ${100-C.hoy.indice} puntos debajo del pico.</p></div>
+    <div class="ent fut"><div class="k">ESCENARIO BASE ${Math.floor(fut.t)}</div><div class="n">${fut.base}</div><p>Banda ${fut.bajo}–${fut.alto} según el ritmo medido del propio ciclo.</p></div>`;
+}
+main().catch(e=>{$("defFase").textContent="No pude cargar el ciclo: "+e.message});
+</script>
+</body></html>

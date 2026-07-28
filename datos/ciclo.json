@@ -1,0 +1,44 @@
+{
+  "plaza": "Tulum, Q.R.",
+  "corte": "JUL 2026",
+  "hoy": { "fase": "AJUSTE", "inicioFase": 2025.3, "confianza": 0.72, "indice": 79 },
+  "lapsos": { "picoAPico": 4, "valle": [1, 2.5], "picoRegionalAPico": 11 },
+  "proximaVentana": { "ini": 2027, "fin": 2029, "confianza": 0.55 },
+  "serie": [
+    { "t": 2005, "v": 21, "f": "EXPANSIÓN" }, { "t": 2007.5, "v": 33, "f": "PICO" },
+    { "t": 2009, "v": 26, "f": "CORRECCIÓN" }, { "t": 2010, "v": 24, "f": "AJUSTE" },
+    { "t": 2011, "v": 26, "f": "RECUPERACIÓN" }, { "t": 2015, "v": 48, "f": "EXPANSIÓN" },
+    { "t": 2019.5, "v": 84, "f": "EXPANSIÓN" }, { "t": 2020.4, "v": 74, "f": "CORRECCIÓN" },
+    { "t": 2021, "v": 86, "f": "RECUPERACIÓN" }, { "t": 2023.5, "v": 100, "f": "PICO" },
+    { "t": 2024.5, "v": 90, "f": "CORRECCIÓN" }, { "t": 2025.3, "v": 82, "f": "CORRECCIÓN" },
+    { "t": 2026.6, "v": 79, "f": "AJUSTE" }
+  ],
+  "proyeccion": [
+    { "t": 2026.6, "base": 79, "bajo": 79, "alto": 79 },
+    { "t": 2027.5, "base": 84, "bajo": 81, "alto": 87 },
+    { "t": 2028.5, "base": 91, "bajo": 85, "alto": 96 },
+    { "t": 2029.5, "base": 99, "bajo": 89, "alto": 107 }
+  ],
+  "hitos": [
+    { "t": 2019.5, "v": 84, "n": "Boom de Tulum" },
+    { "t": 2023.5, "v": 100, "n": "Pico 2023" },
+    { "t": 2026.6, "v": 79, "n": "Estamos aquí" }
+  ],
+  "definiciones": {
+    "EXPANSIÓN": "El precio sube sostenido, entra inventario nuevo y la absorción se acelera. Comprar aquí funciona, pero cada mes cuesta más.",
+    "PICO": "Máximo antes de la caída. La euforia es el indicador: todos venden la misma historia. Es la peor entrada del ciclo.",
+    "CORRECCIÓN": "El precio cede y los días en mercado se alargan. Todavía cae; el cuchillo sigue en el aire.",
+    "AJUSTE": "El fondo se forma. Los precios dejan de caer, el inventario débil se rinde y el producto bueno ya no baja. Es la ventana de entrada.",
+    "RECUPERACIÓN": "La demanda regresa y el precio retoma. Quien compró en el ajuste ya tiene margen; quien entra aquí paga la recuperación."
+  },
+  "historia": [
+    { "fase": "EXPANSIÓN", "ini": 2005, "fin": 2007.5, "nota": "proxy regional · Tulum aún mochilero" },
+    { "fase": "CORRECCIÓN", "ini": 2007.5, "fin": 2010, "nota": "crisis global + H1N1" },
+    { "fase": "EXPANSIÓN", "ini": 2011, "fin": 2019.5, "nota": "nacimiento y boom de Tulum · ~20% anual en picos" },
+    { "fase": "CORRECCIÓN", "ini": 2020, "fin": 2020.8, "nota": "COVID · anomalía <1 año" },
+    { "fase": "PICO", "ini": 2021, "fin": 2023.5, "nota": "boom pandémico · condo prom. $340.7k USD" },
+    { "fase": "CORRECCIÓN", "ini": 2023.5, "fin": 2025.3, "nota": "−10 a −20% · 90–140 días en mercado" },
+    { "fase": "AJUSTE", "ini": 2025.3, "fin": null, "nota": "fondo en formación · premium ya +5–8% anual" }
+  ],
+  "fuentes": "Serie reconstruida de la historia medida del expediente V&LIVING (corte jul 2026); proyección con CAGR conservador 4% / base 6% / alto 7% ancladas al premium medido +5–8%"
+}
