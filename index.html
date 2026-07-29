@@ -5,7 +5,7 @@
 <link rel="icon" href="/assets/vliving-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,600;1,600&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--papel:#FFFFFF;--grafito:#1D1D21;--cromo:#73737B;--suave:#54545C;--linea:rgba(29,29,33,.08);--nar:#F85702;--narh:#DE4600;--narv:#FF7A33;--dato:#333FA8}
+:root{--papel:#FFFFFF;--grafito:#1D1D21;--cromo:#73737B;--suave:#54545C;--linea:rgba(29,29,33,.08);--nar:#F75602;--narh:#DE4600;--narv:#FF7A33;--dato:#333FA8}
 *{box-sizing:border-box;margin:0}
 body{background:var(--papel);color:var(--grafito);font-family:'Inter',sans-serif}
 .cor{font-family:'Cormorant',serif}.mono{font-family:'JetBrains Mono',monospace}
@@ -28,23 +28,23 @@ h1 em{color:#FFE7D6}
 section{padding:40px 0 6px}
 h2.cor{font-size:30px;font-weight:600}
 .secSub{margin-top:6px;font-size:14px;color:var(--suave);max-width:560px;line-height:1.55}
-.card{background:#fff;border:1px solid var(--linea);border-radius:24px;box-shadow:0 12px 34px rgba(248,87,2,.07),0 2px 10px rgba(29,29,33,.04)}
+.card{background:#fff;border:1px solid var(--linea);border-radius:24px;box-shadow:0 12px 34px rgba(247,86,2,.07),0 2px 10px rgba(29,29,33,.04)}
 .grafica{margin-top:20px;padding:22px 18px 14px;overflow:hidden}
 .grafica svg{width:100%;height:auto;display:block}
 .leyenda{display:flex;gap:16px;flex-wrap:wrap;padding:10px 8px 6px;font-size:10.5px;color:var(--cromo);font-family:'JetBrains Mono',monospace}
 .leyenda i{font-style:normal;display:flex;align-items:center;gap:6px}
 .leyenda .l1{width:18px;height:3px;border-radius:2px;background:var(--nar)}
 .leyenda .l2{width:18px;height:3px;border-radius:2px;background:var(--dato);opacity:.6}
-.leyenda .l3{width:18px;height:10px;border-radius:3px;background:rgba(248,87,2,.13)}
+.leyenda .l3{width:18px;height:10px;border-radius:3px;background:rgba(247,86,2,.13)}
 .fases{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
 .faseChip{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:9px 16px;font-size:11px;letter-spacing:.12em;cursor:pointer;font-family:'JetBrains Mono',monospace;color:var(--suave);transition:all .18s}
 .faseChip:hover{transform:translateY(-1px)}
-.faseChip.on{background:linear-gradient(135deg,#FF6316,var(--narh));color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(248,87,2,.3)}
-.defFase{margin-top:14px;padding:18px 20px;background:#FFF3EC;border:1px solid rgba(248,87,2,.15);border-radius:20px;font-size:14.5px;line-height:1.65;color:var(--suave)}
+.faseChip.on{background:linear-gradient(135deg,#FF6316,var(--narh));color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(247,86,2,.3)}
+.defFase{margin-top:14px;padding:18px 20px;background:#FFF3EC;border:1px solid rgba(247,86,2,.15);border-radius:20px;font-size:14.5px;line-height:1.65;color:var(--suave)}
 .defFase b{color:var(--grafito)}
 .medidores{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:20px}
 .med{padding:20px 22px;transition:transform .2s,box-shadow .2s}
-.med:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(248,87,2,.13)}
+.med:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(247,86,2,.13)}
 .med .v{font-size:44px;font-weight:800;color:var(--dato);line-height:1}
 .med .v small{font-size:16px;font-weight:600;color:var(--cromo)}
 .med .t{margin-top:8px;font-size:10.5px;letter-spacing:.16em;color:var(--nar);font-family:'JetBrains Mono',monospace}
@@ -59,8 +59,8 @@ h2.cor{font-size:30px;font-weight:600}
 .cierre{margin-top:16px;font-size:14.5px;line-height:1.65;color:var(--suave);border-left:3px solid var(--nar);padding-left:14px;max-width:600px}
 .cierre b{color:var(--grafito)}
 .suite{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.suite a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:#fff;border:1px solid var(--linea);border-radius:999px;padding:11px 18px;font-size:13px;font-weight:600;color:var(--grafito);box-shadow:0 8px 22px rgba(248,87,2,.07);transition:all .18s}
-.suite a:hover{transform:translateY(-2px);border-color:rgba(248,87,2,.4)}
+.suite a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:#fff;border:1px solid var(--linea);border-radius:999px;padding:11px 18px;font-size:13px;font-weight:600;color:var(--grafito);box-shadow:0 8px 22px rgba(247,86,2,.07);transition:all .18s}
+.suite a:hover{transform:translateY(-2px);border-color:rgba(247,86,2,.4)}
 .suite a b{color:var(--nar)}
 footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;margin-top:64px;font-size:11px;color:var(--cromo);font-family:'JetBrains Mono',monospace;line-height:1.8}
 .fuente{max-width:640px;margin:22px auto 0;font-size:11.5px;color:var(--cromo);line-height:1.6;text-align:left;padding:0 22px}
@@ -69,17 +69,17 @@ footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;mar
 
 .anclas{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:14px}
 .ancla{background:var(--card,#fff);border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px 14px 11px;position:relative}
-.ancla .num{font-size:1.7rem;font-weight:800;color:#F85702;letter-spacing:-.5px}
+.ancla .num{font-size:1.7rem;font-weight:800;color:#F75602;letter-spacing:-.5px}
 .ancla .per{font-weight:700;font-size:.8rem;opacity:.85}
 .ancla .det{font-size:.68rem;line-height:1.35;opacity:.72;margin-top:5px}
 .ancla .src{font-size:.6rem;opacity:.5;margin-top:6px;display:block}
-.ancla.lider::after{content:"LÍDER NACIONAL";position:absolute;top:9px;right:10px;font-size:.5rem;font-weight:800;color:#fff;background:#F85702;border-radius:20px;padding:2px 7px;letter-spacing:.5px}
+.ancla.lider::after{content:"LÍDER NACIONAL";position:absolute;top:9px;right:10px;font-size:.5rem;font-weight:800;color:#fff;background:#F75602;border-radius:20px;padding:2px 7px;letter-spacing:.5px}
 .diverg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 .diverg .lado{background:var(--card,#fff);border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px}
 .diverg .lado b{font-size:.72rem;letter-spacing:1px;display:block;margin-bottom:6px}
 .diverg .lado p{font-size:.78rem;line-height:1.45;margin:0;opacity:.85}
 .diverg .lectura{grid-column:1/-1;background:#141210;color:#fff;border-radius:14px;padding:15px 16px;font-size:.84rem;line-height:1.5}
-.diverg .lectura b{color:#F85702}
+.diverg .lectura b{color:#F75602}
 @media(max-width:560px){.diverg{grid-template-columns:1fr}}
 
 </style></head><body>
@@ -167,15 +167,15 @@ $("fuente").textContent="FUENTE · "+C.fuentes;
   const X=t=>L+(t-t0)/(t1-t0)*(W-L-R), Y=v=>H-B-(v-v0)/(v1-v0)*(H-T-B);
   let s="";
   // franja ventana
-  s+=`<rect x="${X(C.proximaVentana.ini)}" y="${T}" width="${X(C.proximaVentana.fin)-X(C.proximaVentana.ini)}" height="${H-T-B}" fill="rgba(248,87,2,.10)" rx="8"/>`;
+  s+=`<rect x="${X(C.proximaVentana.ini)}" y="${T}" width="${X(C.proximaVentana.fin)-X(C.proximaVentana.ini)}" height="${H-T-B}" fill="rgba(247,86,2,.10)" rx="8"/>`;
   s+=`<text x="${(X(C.proximaVentana.ini)+X(C.proximaVentana.fin))/2}" y="${T+16}" text-anchor="middle" font-size="10" fill="#DE4600" font-family="JetBrains Mono" letter-spacing="2">VENTANA ${C.proximaVentana.ini}–${C.proximaVentana.fin}</text>`;
   // ejes
   for(const y of [25,50,75,100]) s+=`<line x1="${L}" y1="${Y(y)}" x2="${W-R}" y2="${Y(y)}" stroke="rgba(29,29,33,.07)"/><text x="${L-8}" y="${Y(y)+3}" text-anchor="end" font-size="10" fill="#A5A5AD" font-family="JetBrains Mono">${y}</text>`;
   for(const t of [2008,2012,2016,2020,2024,2028]) s+=`<text x="${X(t)}" y="${H-B+20}" text-anchor="middle" font-size="10" fill="#A5A5AD" font-family="JetBrains Mono">${t}</text>`;
   // área + línea historia
   const pts=C.serie.map(p=>`${X(p.t)},${Y(p.v)}`).join(" ");
-  s+=`<polygon points="${X(C.serie[0].t)},${Y(v0)} ${pts} ${X(C.serie.at(-1).t)},${Y(v0)}" fill="rgba(248,87,2,.09)"/>`;
-  s+=`<polyline points="${pts}" fill="none" stroke="#F85702" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  s+=`<polygon points="${X(C.serie[0].t)},${Y(v0)} ${pts} ${X(C.serie.at(-1).t)},${Y(v0)}" fill="rgba(247,86,2,.09)"/>`;
+  s+=`<polyline points="${pts}" fill="none" stroke="#F75602" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;
   // banda proyección
   const bs=C.proyeccion.map(p=>`${X(p.t)},${Y(p.alto)}`).join(" ")+" "+[...C.proyeccion].reverse().map(p=>`${X(p.t)},${Y(p.bajo)}`).join(" ");
   s+=`<polygon points="${bs}" fill="rgba(51,63,168,.10)"/>`;
@@ -183,7 +183,7 @@ $("fuente").textContent="FUENTE · "+C.fuentes;
   // hitos
   for(const h of C.hitos){
     const aqui=h.n.includes("aquí");
-    s+=`<circle cx="${X(h.t)}" cy="${Y(h.v)}" r="${aqui?8:5.5}" fill="${aqui?"#F85702":"#fff"}" stroke="#F85702" stroke-width="3">${aqui?'<animate attributeName="r" values="7;10;7" dur="1.8s" repeatCount="indefinite"/>':''}</circle>`;
+    s+=`<circle cx="${X(h.t)}" cy="${Y(h.v)}" r="${aqui?8:5.5}" fill="${aqui?"#F75602":"#fff"}" stroke="#F75602" stroke-width="3">${aqui?'<animate attributeName="r" values="7;10;7" dur="1.8s" repeatCount="indefinite"/>':''}</circle>`;
     s+=`<text x="${X(h.t)}" y="${Y(h.v)-16}" text-anchor="middle" font-size="11" font-weight="700" fill="#1D1D21" font-family="Inter">${h.n}</text>`;
   }
   $("curva").innerHTML=s;
