@@ -4,6 +4,17 @@
 <meta name="description" content="El medidor de picos y valles del mercado inmobiliario. Fase actual del ciclo, frecuencias medidas y ventana de entrada. Por V&LIVING.">
 <link rel="icon" href="/assets/vliving-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,600;1,600&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#F75602">
+<link rel="canonical" href="https://vliving-frecuencia.vercel.app/">
+<link rel="icon" href="/assets/vliving-logo.png">
+<link rel="apple-touch-icon" href="/assets/vliving-logo.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta property="og:title" content="Frecuencia · V&LIVING">
+<meta property="og:description" content="El ciclo del mercado medido: picos, valles y ventanas de entrada, plaza por plaza.">
+<meta property="og:url" content="https://vliving-frecuencia.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Frecuencia · V&LIVING","url":"https://vliving-frecuencia.vercel.app/","description":"El ciclo del mercado medido: picos, valles y ventanas de entrada, plaza por plaza.","inLanguage":"es-MX","applicationCategory":"FinanceApplication","isPartOf":{"@type":"WebSite","name":"V&LIVING","url":"https://vliving.site"}}</script>
 <style>
 :root{--papel:#FFFFFF;--grafito:#1D1D21;--cromo:#73737B;--suave:#54545C;--linea:rgba(29,29,33,.08);--nar:#F75602;--narh:#DE4600;--narv:#FF7A33;--dato:#333FA8}
 *{box-sizing:border-box;margin:0}
@@ -93,6 +104,8 @@ footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;mar
 .prelimCard p{font-size:.86rem;line-height:1.55;opacity:.85;margin-top:8px}
 .prelimCard .conf{font-size:.68rem;font-weight:800;letter-spacing:1px;opacity:.5;margin-top:12px;text-transform:uppercase}
 .ocultoP{display:none!important}
+::selection{background:#F75602;color:#fff}
+:focus-visible{outline:2px solid #F75602;outline-offset:2px;border-radius:4px}
 </style></head><body>
 <header>
 <svg class="onda-deco" viewBox="0 0 420 160"><path d="M0 120 C50 120 60 30 110 30 S170 130 220 130 S280 20 330 20 S390 110 420 110" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
@@ -151,6 +164,7 @@ footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;mar
 <footer>V&amp;LIVING · FRECUENCIA · CORTE <span id="corte">—</span><br>Primero entiende el ciclo. Después invierte.<br><span style="opacity:.7">API abierta del ciclo: /api/ciclo</span></footer>
 <script>
 const $=id=>document.getElementById(id);
+try{navigator.sendBeacon&&navigator.sendBeacon("https://vliving.site/api/track",JSON.stringify({tipo:"pageview",detalle:"/art/frecuencia"}))}catch(_e){}
 const FASES_PRELIM={
  "Cancún":{f:"AJUSTE TARDÍO",c:"0.50",t:"El nicho USD frente al mar corrige después que Tulum; la ciudad en pesos ni se enteró. Se negocia mejor que en 2023, con más calma que prisa."},
  "Playa del Carmen":{f:"AJUSTE",c:"0.50",t:"Inventario condominal alto tras una década de expansión: fase de absorción. El que compra hoy negocia; el que vende espera."},
@@ -162,11 +176,12 @@ const FASES_PRELIM={
  "Guadalajara":{f:"EXPANSIÓN",c:"0.40",t:"Tech y vivienda vertical sostienen la subida. Fase media de onda con demanda local real."},
  "Acapulco":{f:"RECUPERACIÓN TEMPRANA",c:"0.40",t:"Reconstrucción post-Otis: la fase más incierta y la de mayor recorrido potencial si la infraestructura regresa. Solo para estómago fuerte."}
 };
-let plazaAct="Tulum", fhTulum=null;
+const _q=new URLSearchParams(location.search);
+let plazaAct=decodeURIComponent(_q.get("plaza")||"")||localStorage.getItem("fq_plaza")||"Tulum", fhTulum=null;
 function pintaPlaza(){
   const secs=[...document.querySelectorAll("section.wrap")].filter(s=>s.id!=="selPlazaSec");
   const box=$("prelimBox");
-  document.querySelectorAll("#selPlazas .pillPlaza").forEach(x=>x.classList.toggle("on",x.dataset.z===plazaAct));
+  document.querySelectorAll("#selPlazas .pillPlaza").forEach(x=>{x.classList.toggle("on",x.dataset.z===plazaAct);x.setAttribute("aria-pressed",x.dataset.z===plazaAct);});
   if(plazaAct==="Tulum"){secs.forEach(s=>s.classList.remove("ocultoP"));box.classList.add("ocultoP");
     if(fhTulum){$("fhFase").textContent=fhTulum[0];$("fhMeta").textContent=fhTulum[1];}
   }else{
@@ -178,9 +193,10 @@ function pintaPlaza(){
   }
 }
 function mainPlazas(){
+  if(plazaAct!=="Tulum"&&!FASES_PRELIM[plazaAct])plazaAct="Tulum";
   const zs=["Tulum",...Object.keys(FASES_PRELIM)];
-  $("selPlazas").innerHTML=zs.map(z=>`<button class="pillPlaza${z===plazaAct?" on":""}" data-z="${z}">${z}${z==="Tulum"?"<s>MEDIDA</s>":"<s>PRELIM</s>"}</button>`).join("");
-  document.querySelectorAll("#selPlazas .pillPlaza").forEach(b=>b.onclick=()=>{plazaAct=b.dataset.z;pintaPlaza();});
+  $("selPlazas").innerHTML=zs.map(z=>`<button class="pillPlaza${z===plazaAct?" on":""}" aria-pressed="${z===plazaAct}" data-z="${z}">${z}${z==="Tulum"?"<s>MEDIDA</s>":"<s>PRELIM</s>"}</button>`).join("");
+  document.querySelectorAll("#selPlazas .pillPlaza").forEach(b=>b.onclick=()=>{plazaAct=b.dataset.z;localStorage.setItem("fq_plaza",plazaAct);const u=new URL(location);plazaAct==="Tulum"?u.searchParams.delete("plaza"):u.searchParams.set("plaza",plazaAct);history.replaceState(null,"",u);pintaPlaza();});
 }
 async function main(){
   const C=await (await fetch("/api/ciclo")).json();
