@@ -82,6 +82,17 @@ footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;mar
 .diverg .lectura b{color:#F75602}
 @media(max-width:560px){.diverg{grid-template-columns:1fr}}
 
+.selPlazas{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.selPlazas::-webkit-scrollbar{display:none}
+.pillPlaza{flex:0 0 auto;border:1.5px solid rgba(0,0,0,.15);background:#fff;border-radius:30px;padding:8px 15px;font-weight:800;font-size:.78rem;cursor:pointer;transition:.18s}
+.pillPlaza.on{background:var(--nar);border-color:var(--nar);color:#fff;box-shadow:0 6px 16px rgba(247,86,2,.35)}
+.pillPlaza s{text-decoration:none;font-size:.58rem;opacity:.6;margin-left:5px;letter-spacing:1px}
+.prelimCard{background:#fff;border:1px solid rgba(0,0,0,.09);border-left:4px solid var(--nar);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(20,18,16,.06);margin-top:6px}
+.prelimCard h3{font-size:1.3rem;letter-spacing:-.5px}
+.prelimCard .fs{display:inline-block;background:var(--nar);color:#fff;border-radius:8px;padding:3px 10px;font-weight:800;font-size:.72rem;letter-spacing:1.5px;margin-bottom:10px}
+.prelimCard p{font-size:.86rem;line-height:1.55;opacity:.85;margin-top:8px}
+.prelimCard .conf{font-size:.68rem;font-weight:800;letter-spacing:1px;opacity:.5;margin-top:12px;text-transform:uppercase}
+.ocultoP{display:none!important}
 </style></head><body>
 <header>
 <svg class="onda-deco" viewBox="0 0 420 160"><path d="M0 120 C50 120 60 30 110 30 S170 130 220 130 S280 20 330 20 S390 110 420 110" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
@@ -92,6 +103,11 @@ footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;mar
 <div class="in faseHoy" id="faseHoy"><span class="dot"></span><div><b id="fhFase">—</b><br><span id="fhMeta">cargando…</span></div></div>
 </div>
 </header>
+<section class="wrap" id="selPlazaSec">
+<h2 class="cor in">Elige la plaza</h2>
+<div class="selPlazas in" id="selPlazas"></div>
+<div class="prelimCard in ocultoP" id="prelimBox"></div>
+</section>
 
 <section class="wrap">
 <h2 class="cor in">La onda completa</h2>
@@ -135,6 +151,37 @@ footer{border-top:1px solid var(--linea);padding:26px 22px;text-align:center;mar
 <footer>V&amp;LIVING · FRECUENCIA · CORTE <span id="corte">—</span><br>Primero entiende el ciclo. Después invierte.<br><span style="opacity:.7">API abierta del ciclo: /api/ciclo</span></footer>
 <script>
 const $=id=>document.getElementById(id);
+const FASES_PRELIM={
+ "Cancún":{f:"AJUSTE TARDÍO",c:"0.50",t:"El nicho USD frente al mar corrige después que Tulum; la ciudad en pesos ni se enteró. Se negocia mejor que en 2023, con más calma que prisa."},
+ "Playa del Carmen":{f:"AJUSTE",c:"0.50",t:"Inventario condominal alto tras una década de expansión: fase de absorción. El que compra hoy negocia; el que vende espera."},
+ "Los Cabos":{f:"EXPANSIÓN MADURA",c:"0.45",t:"El mercado dólar sigue subiendo con el golf y el jet americano. Fase avanzada: entrar exige seleccionar producto, no comprar cualquier cosa."},
+ "Puerto Vallarta":{f:"EXPANSIÓN",c:"0.45",t:"Demanda internacional estable y obra nueva activa. La onda sube sin euforia: fase constructiva del ciclo."},
+ "Mérida":{f:"EXPANSIÓN",c:"0.50",t:"Migración interna sostenida empuja la plaza en pesos. Sube parejo, sin el latigazo especulativo del Caribe."},
+ "CDMX":{f:"RECUPERACIÓN LENTA",c:"0.45",t:"La plaza más honda del país se mueve despacio: años planos post-2020 y recuperación gradual por zonas. Ciclo largo, sin ventanas dramáticas."},
+ "Monterrey":{f:"CORRECCIÓN",c:"0.40",t:"El empujón del nearshoring ya se pagó en precios. Fase de digestión: el ciclo industrial manda más que el inmobiliario."},
+ "Guadalajara":{f:"EXPANSIÓN",c:"0.40",t:"Tech y vivienda vertical sostienen la subida. Fase media de onda con demanda local real."},
+ "Acapulco":{f:"RECUPERACIÓN TEMPRANA",c:"0.40",t:"Reconstrucción post-Otis: la fase más incierta y la de mayor recorrido potencial si la infraestructura regresa. Solo para estómago fuerte."}
+};
+let plazaAct="Tulum", fhTulum=null;
+function pintaPlaza(){
+  const secs=[...document.querySelectorAll("section.wrap")].filter(s=>s.id!=="selPlazaSec");
+  const box=$("prelimBox");
+  document.querySelectorAll("#selPlazas .pillPlaza").forEach(x=>x.classList.toggle("on",x.dataset.z===plazaAct));
+  if(plazaAct==="Tulum"){secs.forEach(s=>s.classList.remove("ocultoP"));box.classList.add("ocultoP");
+    if(fhTulum){$("fhFase").textContent=fhTulum[0];$("fhMeta").textContent=fhTulum[1];}
+  }else{
+    const d=FASES_PRELIM[plazaAct];
+    secs.forEach(s=>s.classList.add("ocultoP"));box.classList.remove("ocultoP");
+    box.innerHTML=`<span class="fs">FASE ${d.f}</span><h3>${plazaAct}</h3><p>${d.t}</p><p>La curva de veinte años de esta plaza está en levantamiento: esto es lectura editorial de fase, no serie medida. Cuando la plaza entre a medición completa, aquí vive su onda.</p><div class="conf">Confianza ${d.c} · lectura preliminar V&LIVING</div>`;
+    $("fhFase").textContent=d.f.charAt(0)+d.f.slice(1).toLowerCase();
+    $("fhMeta").textContent=plazaAct+" · lectura preliminar";
+  }
+}
+function mainPlazas(){
+  const zs=["Tulum",...Object.keys(FASES_PRELIM)];
+  $("selPlazas").innerHTML=zs.map(z=>`<button class="pillPlaza${z===plazaAct?" on":""}" data-z="${z}">${z}${z==="Tulum"?"<s>MEDIDA</s>":"<s>PRELIM</s>"}</button>`).join("");
+  document.querySelectorAll("#selPlazas .pillPlaza").forEach(b=>b.onclick=()=>{plazaAct=b.dataset.z;pintaPlaza();});
+}
 async function main(){
   const C=await (await fetch("/api/ciclo")).json();
   $("plaza").textContent=C.plaza; $("corte").textContent=C.corte; 
@@ -208,6 +255,7 @@ $("fuente").textContent="FUENTE · "+C.fuentes;
     <div class="ent hoy"><div class="k">COMPRADA HOY · ${C.hoy.fase}</div><div class="n">${C.hoy.indice}</div><p>Entras con el fondo en formación, ${100-C.hoy.indice} puntos debajo del pico.</p></div>
     <div class="ent fut"><div class="k">ESCENARIO BASE ${Math.floor(fut.t)}</div><div class="n">${fut.base}</div><p>Banda ${fut.bajo}–${fut.alto} según el ritmo medido del propio ciclo.</p></div>`;
 }
-main().catch(e=>{$("defFase").textContent="No pude cargar el ciclo: "+e.message});
+mainPlazas();
+main().then(()=>{fhTulum=[$("fhFase").textContent,$("fhMeta").textContent];if(plazaAct!=="Tulum")pintaPlaza();}).catch(e=>{$("defFase").textContent="No pude cargar el ciclo: "+e.message});
 </script>
 </body></html>
